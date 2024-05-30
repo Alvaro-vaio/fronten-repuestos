@@ -1,0 +1,82 @@
+<c-row>
+<c-col>
+    <p>REPUESTOS</p>  
+    <c-card class="mb-4">
+        <c-card-header>
+          <strong>Formulario de Repuestos</strong>
+        </c-card-header>
+        <c-card-body>
+          
+            <form cForm>
+              <div class="mb-3">
+                <label cLabel for="codigo">Codigo</label>
+                <input cFormControl
+                       id="codigo"
+                       placeholder="Introdusca el codigo"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="descripcion">Descripcion</label>
+                <input cFormControl
+                       id="descripcion"
+                       placeholder="Infromacion del repuesto"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="stock">Stock</label>
+                <input cFormControl
+                       id="stock"
+                       placeholder="Ingrese la cantidad"
+                       type="number"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="marca">Marca</label>
+                <input cFormControl
+                       id="marca"
+                       placeholder="Ingrese Marca de Producto"
+                       type="text"
+                />
+              </div><div class="mb-3">
+                <label cLabel for="pais">Pais</label>
+                <input cFormControl
+                       id="pais"
+                       placeholder="Ingrese el pais de origen del producto"
+                       type="text"
+                />
+              </div>
+              <button cButton class="me-1" color="primary" type="submit">
+                Guardar
+              </button>
+               
+              
+            </form>
+            </c-card-body>
+      </c-card>
+
+</c-col> 
+<c-col xs="12">
+    <table cTable>
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td><button cButton color="warning" shape="rounded-0">Editar</button> <button cButton color="danger" shape="rounded-0">Eliminar</button></td>
+        </tr>
+       
+        </tbody>
+      </table>
+</c-col>   
+</c-row>
+
