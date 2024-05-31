@@ -13,8 +13,7 @@
     }
   },
   "files": [
-    "src/main.ts",
-    "./src/app/appConfig.ts"
+    "src/main.ts"
   ],
   "include": [
     "src/**/*.d.ts"

@@ -1,4 +1,4 @@
-<c-row>
+<c-row ngPreserveWhitespaces>
 <c-col>
     <p>REPUESTOS</p>  
     <c-card class="mb-4">
@@ -14,6 +14,8 @@
                        id="codigo"
                        placeholder="Introdusca el codigo"
                        type="text"
+                       [(ngModel)] = "RepuestoModel.codigo"
+                       name="codigo"
                 />
               </div>
               <div class="mb-3">
@@ -22,6 +24,8 @@
                        id="descripcion"
                        placeholder="Infromacion del repuesto"
                        type="text"
+                       [(ngModel)] = "RepuestoModel.descripcion"
+                       name="descripcion"
                 />
               </div>
               <div class="mb-3">
@@ -30,6 +34,8 @@
                        id="stock"
                        placeholder="Ingrese la cantidad"
                        type="number"
+                       [(ngModel)] = "RepuestoModel.stock"
+                       name="stock"
                 />
               </div>
               <div class="mb-3">
@@ -38,6 +44,8 @@
                        id="marca"
                        placeholder="Ingrese Marca de Producto"
                        type="text"
+                       [(ngModel)] = "RepuestoModel.marca"
+                       name="marca"
                 />
               </div><div class="mb-3">
                 <label cLabel for="pais">Pais</label>
@@ -45,12 +53,13 @@
                        id="pais"
                        placeholder="Ingrese el pais de origen del producto"
                        type="text"
+                       [(ngModel)] = "RepuestoModel.pais"
+                       name="pais"
                 />
               </div>
-              <button cButton class="me-1" color="primary" type="submit">
+              <button (click)="agregarRepuesto()" cButton class="me-1" color="primary" type="submit">
                 Guardar
               </button>
-               
               
             </form>
             </c-card-body>
@@ -65,15 +74,23 @@
           <th scope="col">Codigo</th>
           <th scope="col">Descripcion</th>
           <th scope="col">Stock</th>
+          <th scope="col">Marca</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td><button cButton color="warning" shape="rounded-0">Editar</button> <button cButton color="danger" shape="rounded-0">Eliminar</button></td>
-        </tr>
+
+          @for ( repuesto of listaRepuesto; track repuesto; ){
+          <tr>
+            <th scope="row">1</th>
+            <td>{{repuesto.codigo}}</td>
+            <td>{{repuesto.descripcion}}</td>
+            <td>{{repuesto.stock}}</td>
+            <td>{{repuesto.marca}}</td>
+            <td>
+              <button cButton color="warning" variant="outline" (click)="verRepuesto(repuesto)">Editar</button>
+              <button (click)="eliminarRepuesto(repuesto)" cButton color="danger" variant="outline">Eliminar</button></td>
+          </tr>
+        }
        
         </tbody>
       </table>

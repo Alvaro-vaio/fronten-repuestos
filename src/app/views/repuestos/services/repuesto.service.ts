@@ -13,4 +13,17 @@ export class repuestoService {
     getTodoLosRepuestos (): Observable<repuestoModel[]>{
         return this.http.get<repuestoModel[]>(`${this.API_URL}/verRepuesto`);
     }
+    agregarRepuesto(repuesto: repuestoModel) : Observable<repuestoModel> {
+        return this.http.post<repuestoModel>(`${this.API_URL}/ingresar`, repuesto);
+      }
+      editarRepuesto(repuesto: repuestoModel) : Observable<repuestoModel> {
+        return this.http.put<repuestoModel>(`${this.API_URL}/editar/${repuesto._id}`, repuesto);
+      }
+    
+      eliminarRepuesto(idRepuesto : string) : Observable<repuestoModel> {
+        console.log(idRepuesto);
+        // return this.http.delete<RecetaModel>(`${this.API_URL}/eliminar/${idReceta}`);
+        return this.http.delete<repuestoModel>(this.API_URL+'/eliminar/'+idRepuesto);
+    
+      }
 }

@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonDirective, CardBodyComponent, CardComponent, CardFooterComponent, CardHeaderComponent, ColComponent, FormControlDirective, FormDirective, FormLabelDirective, RowComponent, TableActiveDirective, TableColorDirective, TableDirective, TextColorDirective } from '@coreui/angular';
+import { ButtonDirective, CardBodyComponent, CardComponent, CardHeaderComponent, ColComponent, FormControlDirective, FormDirective, FormLabelDirective, FormSelectDirective, RowComponent, TableActiveDirective, TableColorDirective, TableDirective, TextColorDirective } from '@coreui/angular';
 import { DocsExampleComponent } from '@docs-components/public-api';
 import {repuestoModel} from '../models/repuesto.model';
 import {repuestoService} from '../services/repuesto.service';
@@ -18,16 +18,73 @@ import {repuestoService} from '../services/repuesto.service';
 })
 export class RepuestoComponent {
   listaRepuesto :  repuestoModel[] = [];
+
+  RepuestoModel : repuestoModel = new repuestoModel();
+  
   constructor(private RepuestoService: repuestoService){
-    this.verRepuesto();
+    this.getRepuesto();
   }
-  verRepuesto(){
+  getRepuesto(){
     this.RepuestoService.getTodoLosRepuestos().subscribe({
-      next :(respuesta) =>{
-        console.log(respuesta);
-        this.listaRepuesto = respuesta;
+      next : (respuesta) => {
+          console.log(respuesta);
+          this.listaRepuesto = respuesta;
       },
-      error:(error) => {
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  guardarRepuesto(){
+    console.log(this.RepuestoModel);
+    if (this.RepuestoModel._id == '') {
+      console.log("guardar", this.RepuestoModel);
+      this.agregarRepuesto();
+    } else {
+      console.log("editar", this.RepuestoModel);
+      this.editarRepuesto();
+    }
+
+
+  }
+  agregarRepuesto(){
+    this.RepuestoService.agregarRepuesto(this.RepuestoModel).subscribe({
+      next : (respuesta) => {
+          console.log("Se guardo exitosamente",respuesta);
+          this.getRepuesto();
+          this.RepuestoModel = new repuestoModel();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+
+  eliminarRepuesto(repuesto: repuestoModel){
+    console.log("itema para eliminar", repuesto);
+    this.RepuestoService.eliminarRepuesto(repuesto._id).subscribe({
+      next : (respuesta) => {
+          console.log("Se elimino exitosamente",respuesta);
+          this.getRepuesto();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+  }
+  verRepuesto(repuesto: repuestoModel){
+    this.RepuestoModel = repuesto;
+  }
+
+  editarRepuesto(){
+    this.RepuestoService.editarRepuesto(this.RepuestoModel).subscribe({
+      next : (respuesta) => {
+          console.log("Se edito exitosamente",respuesta);
+          this.getRepuesto();
+          this.RepuestoModel = new repuestoModel();
+      },
+      error: (error) => {
         console.log(error);
       }
     })

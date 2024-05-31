@@ -1,4 +1,5 @@
 export class repuestoModel{
+    _id: string = '';
     codigo: string = '';
     descripcion: string = '';
     stock: number = 0 ;
